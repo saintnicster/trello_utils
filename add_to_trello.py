@@ -4,7 +4,6 @@ from pprint import pprint
 from inspect import getmembers
 
 import pyperclip
-import webbrowser
 
 ISSOW_BOARD_ID        = '587d4739aacd90eb33fedfce'
 NEWLY_CREATED_LIST_ID = '587e244b50ed39d516edf94f'
@@ -71,7 +70,7 @@ while True:
         input("\nCopy Long description into clipboard.  Press ENTER to continue")
         description_input = pyperclip.paste()
         
-        print("Description found - \n %s" % (description_input))
+        print("Description found - \n%s" % (description_input))
         if input("Is this correct? [y/n] ").upper() == 'Y':
             break
 
@@ -88,4 +87,4 @@ while True:
     new_card = list_created.add_card(  "%s - %s" % (sn_num_input, short_descr_input,), description_input, card_labels )
     new_card.attach("ServiceNow - %s" % (sn_num_input), None, None, 
                     "https://conocophillips.service-now.com/nav_to.do?uri=incident.do?sysparm_query=number=%s" % (sn_num_input))
-    webbrowser.open_new(new_card.url)
+    print("Card created at url %s" % (new_card.url))

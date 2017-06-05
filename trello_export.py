@@ -9,7 +9,7 @@ import csv
 client = TrelloClient(
     api_key='***REMOVED***',
     api_secret='***REMOVED***',
-    token='cf7bc847fedeedd732c113b2f6792dbcb8ac97df62498a8a8ba58a16655a54ee',
+    token='***REMOVED***',
     token_secret='***REMOVED***'
 )
 

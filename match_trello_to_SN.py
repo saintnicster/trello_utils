@@ -21,7 +21,7 @@ def read_servicenow_file():
 client = TrelloClient(
     api_key='***REMOVED***',
     api_secret='***REMOVED***',
-    token='cf7bc847fedeedd732c113b2f6792dbcb8ac97df62498a8a8ba58a16655a54ee',
+    token='***REMOVED***',
     token_secret='***REMOVED***'
 )
 ISSOW_BOARD_ID = '587d4739aacd90eb33fedfce'

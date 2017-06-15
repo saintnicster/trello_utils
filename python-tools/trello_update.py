@@ -5,7 +5,6 @@ import requests
 from trello import TrelloApi
 from pprint import pprint
 from inspect import getmembers
-from Mytrello import Mytrello
 
 TRELLO_APP_KEY = "***REMOVED***"
 TOKEN = "***REMOVED***"

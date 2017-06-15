@@ -1,7 +1,6 @@
 from trello import TrelloClient
 from pprint import pprint
 from inspect import getmembers
-from Mytrello import Mytrello
 from datetime import datetime
 import json
 import csv

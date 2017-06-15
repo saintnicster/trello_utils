@@ -4,7 +4,6 @@ import csv
 from trello import TrelloApi
 from pprint import pprint
 from inspect import getmembers
-from Mytrello import Mytrello
 TRELLO_COLORS = {'GREEN': 'green',
                  'YELLOW': 'yellow',
                  'ORANGE': 'orange',

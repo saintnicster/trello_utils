@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+=======
+# Add any directories, files, or patterns you don't want to be tracked by version control
+
+*.csv
+.vscode/
+
+#==================================
+# Generated .gitignore file from TFS
+>>>>>>> bitbucket/master
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

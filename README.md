@@ -1,20 +1,12 @@
 #Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+These are the utilities that the ISSoW group uses to maintain our team management tools.  Currently, we put our ServiceNow tickets into a private Trello board.
 
 #Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+1.	The Pyhton code here was developed on Python 3.6.1.  This is NOT the version found in the COP Software Store.
+2.	When setting up the python environment,  you will need these modules via PIP.
+    * cx-Freeze
+    * py-trello
+    * pyperclip
 
 #Build and Test
-TODO: Describe and show how to build your code and run the tests. 
-
-#Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+Building the exe files is done by navigating inside the `python-tools` directory, then running `python .\setup.py build`.  This will generate the folder `python-tools\build\combo`.  Two executables, along with the python framework will be generated and can be run on a machine that doesn't have python installed natively

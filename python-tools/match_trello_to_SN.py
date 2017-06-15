@@ -10,7 +10,7 @@ from os import path
 def read_servicenow_file():
     file_rows = []
     sn_dict = {}
-    with open('C:\\Users\\fajarn\\Documents\\backlog_importer\\incident.csv') as csv_file:
+    with open('C:\\Users\\fajarn\\Documents\\issow_trello_utils\\incident.csv') as csv_file:
         file_reader = csv.DictReader(csv_file)
         
         for row in file_reader:

@@ -2,7 +2,7 @@ from cx_Freeze import setup, Executable
 
 # Dependencies are automatically detected, but it might need
 # fine tuning.
-buildOptions = dict(build_exe = "./build/combo", packages = ["queue"], excludes = [], silent=True)
+buildOptions = dict(build_exe = "./build/combo", packages = ["idna","queue"], excludes = [], silent=True)
 
 base = 'Console'
 

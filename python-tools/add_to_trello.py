@@ -31,14 +31,13 @@ bu_names = []
 for bu in BU_TRELLO_LABELS.items() :
     bu_names.append( bu[1]["name"] )
 
-while True:
+def create_trello_ticket():
     while True:
         print("New incident into trello")
         sn_num_input = input("** SN Incident Number - ")
         sn_num_input.strip()
         if len(sn_num_input) == 0:
-            print("No input found, exiting...")
-            exit()
+            return False
         else:
             if sn_num_input[0:3] != "INC":
                 sn_num_input = "INC"+sn_num_input
@@ -88,3 +87,9 @@ while True:
     new_card.attach("ServiceNow - %s" % (sn_num_input), None, None, 
                     "https://conocophillips.service-now.com/nav_to.do?uri=incident.do?sysparm_query=number=%s" % (sn_num_input))
     print("Card created at url %s" % (new_card.url))
+
+
+while True:
+    if create_trello_ticket() == False:
+        print("No input found, exiting...")
+        break

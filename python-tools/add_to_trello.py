@@ -91,5 +91,5 @@ def create_trello_ticket():
 
 while True:
     if create_trello_ticket() == False:
-        print("No input found, exiting...")
+        input("No input found, press any key to exit")
         break

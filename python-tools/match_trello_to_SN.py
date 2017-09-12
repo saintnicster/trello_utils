@@ -23,7 +23,9 @@ client = TrelloClient(
     token='***REMOVED***',
     token_secret='***REMOVED***'
 )
-ISSOW_BOARD_ID = '587d4739aacd90eb33fedfce'
+BACKLOG_BOARD_ID = '587d4739aacd90eb33fedfce'
+INWORK_BOARD_ID = '59b801ead00a15fd62d1fe05'
+
 CLOSED_LIST_ID = '587fb500aa3ee04f092ccc7d'
 
 xref_dict = {}
@@ -31,14 +33,16 @@ list_lookup = {}
 
 servicenow_dump = read_servicenow_file()
 
-issow_board = client.get_board(ISSOW_BOARD_ID)
-issow_lists = issow_board.all_lists()
+backlog_board = client.get_board(BACKLOG_BOARD_ID)
+inwork_board = client.get_board(INWORK_BOARD_ID)
+
+issow_lists = inwork_board.all_lists( ) + backlog_board.all_lists( )
 
 for list in issow_lists:
     list_lookup[list.id] = list
 
 #issow_cards = trello.boards.get_card(ISSOW_BOARD_ID,None,None,None,None,None,"all","idList,name,url,labels,closed")
-all_cards = issow_board.all_cards( )
+all_cards = inwork_board.all_cards( ) + backlog_board.all_cards( ) 
 for card in all_cards:
     incident_number = card.name.partition('-')[0].strip()
     xref_dict[incident_number] = card 

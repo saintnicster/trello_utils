@@ -12,13 +12,16 @@ client = TrelloClient(
     token_secret='***REMOVED***'
 )
 
-ISSOW_BOARD_ID = '587d4739aacd90eb33fedfce'
+BACKLOG_BOARD_ID = '587d4739aacd90eb33fedfce'
+INWORK_BOARD_ID = '59b801ead00a15fd62d1fe05'
 
 list_lookup = {}
 csv_output = []
-issow_board = client.get_board(ISSOW_BOARD_ID)
-issow_lists = issow_board.all_lists( )
-all_cards = issow_board.open_cards( )
+backlog_board = client.get_board(BACKLOG_BOARD_ID)
+inwork_board = client.get_board(INWORK_BOARD_ID)
+
+issow_lists = inwork_board.all_lists( ) + backlog_board.all_lists( )
+all_cards = inwork_board.open_cards(  ) + backlog_board.open_cards( )
 
 for list in issow_lists:
     list_lookup[list.id] = list

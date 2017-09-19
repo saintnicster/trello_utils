@@ -31,28 +31,36 @@ for card in all_cards:
         print("Card archived! %s" % card.name)
         continue
     
-    card.labelText = card.ServiceNow_Status = card.ServiceNow_Assigned = card.ServiceNow_BU = card.BU_Identified_Priority = ""
+    card.labelText = card.ServiceNow_Assigned = card.ServiceNow_BU = card.BU_Identified_Priority = ""
     
     for label in card.list_labels:
-        if label.color == 'orange':
-           card.ServiceNow_Status = label.name 
-        elif label.color == 'blue':
+        if label.color == 'blue':
             card.ServiceNow_Assigned = label.name 
         elif label.color == 'lime':
             card.ServiceNow_BU = label.name 
         elif label.color == 'red':
             card.BU_Identified_Priority = 'YES'
-    
-    csv_output.append({ "incidentName": card.name,
+
+    name_partition = card.name.partition('-')
+    incident_number = name_partition[0].strip()
+    if incident_number.startswith('INC') == True:
+        incident_name = name_partition[2].strip()
+    else:
+        incident_number = ''
+        incident_name = card.name
+
+    incident_name = name_partition[2].strip()
+
+    csv_output.append({ "incidentNumber": incident_number,
+                        "incidentName": incident_name,
                         "listName": list_lookup[card.idList].name,
                         "BU_Reported": card.ServiceNow_BU,
-                        "SN_Status": card.ServiceNow_Status,
                         "SN_Assigned": card.ServiceNow_Assigned,
                         "BU_Identified_Priority": card.BU_Identified_Priority })
 
 csv_filename = "//conoco.net/bvl_shared/temp/fajarn/trello_export_"+datetime.now().strftime("%Y%m%d%H%M%S")+'.csv'
 with open(csv_filename,'w') as csv_file:
-    writer = csv.DictWriter(csv_file, ["incidentName",'listName',"BU_Reported","SN_Status", "SN_Assigned", "BU_Identified_Priority"],None,'raise','unix')
+    writer = csv.DictWriter(csv_file, ["incidentNumber","incidentName",'listName',"BU_Reported","SN_Assigned", "BU_Identified_Priority"],None,'raise','unix')
     writer.writeheader()
     for row in csv_output:
         writer.writerow(row)

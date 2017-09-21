@@ -36,7 +36,7 @@ for card in all_cards:
     for label in card.list_labels:
         if label.color == 'blue':
             card.ServiceNow_Assigned = label.name 
-        elif label.color == 'lime':
+        elif label.color == 'green':
             card.ServiceNow_BU = label.name 
         elif label.color == 'red':
             card.BU_Identified_Priority = 'YES'

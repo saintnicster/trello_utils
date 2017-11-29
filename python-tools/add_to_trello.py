@@ -48,7 +48,7 @@ def create_trello_ticket():
             if sn_num_input[0:3] != "INC":
                 sn_num_input = "INC"+sn_num_input
             
-            if len(client.search(sn_num_input, False, [], BACKLOG_BOARD_ID )) != 0:
+            if len(client.search(sn_num_input, False, [], TRELLO_IDS.BOARDS.BACKLOG )) != 0:
                 print("Incident %s already in Trello\n\n" % (sn_num_input) )
             else:
                 break
@@ -113,7 +113,8 @@ def create_trello_ticket():
 
     new_card.attach("ServiceNow - %s" % (sn_num_input), None, None, 
                     "https://conocophillips.service-now.com/nav_to.do?uri=incident.do?sysparm_query=number=%s" % (sn_num_input))
-    if bville_input == 'Y':
+                    
+    if bville_input == 'N':
         new_card.change_list( TRELLO_IDS.LISTS.NOT_BVILLE )
 
     if resolved_input == 'Y':

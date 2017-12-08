@@ -40,8 +40,7 @@ list_created = client.get_board(TRELLO_IDS.BOARDS.BACKLOG).get_list(TRELLO_IDS.L
 def create_trello_ticket():
     while True:
         print("New incident into trello")
-        #sn_num_input = input("** SN Incident Number - ")
-        sn_num_input = "INC3139012"
+        sn_num_input = input("** SN Incident Number - ")
         sn_num_input.strip()
         if len(sn_num_input) == 0:
             return False

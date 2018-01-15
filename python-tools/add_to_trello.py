@@ -71,6 +71,13 @@ def create_trello_ticket():
             break
 
     while True:
+        bville_input = input("** Is this being handled by Bartlesville support team? [y/n] ").upper()
+        if bville_input not in ["Y", "N"]:
+            print("Invalid input... try again\n %s" % (resolved_input))
+        else:
+            break
+
+    while True:
         config_input = input("** Is this a config change? [y/n] ").upper()
         if config_input not in ["Y", "N"]:
             print("Invalid input... try again\n %s" % (config_input))
@@ -88,13 +95,6 @@ def create_trello_ticket():
     while True:
         resolved_input = input("** Has this already been resolved? [y/n] ").upper()
         if resolved_input not in ["Y", "N"]:
-            print("Invalid input... try again\n %s" % (resolved_input))
-        else:
-            break
-
-    while True:
-        bville_input = input("** Is this being handled by Bartlesville support team? [y/n] ").upper()
-        if bville_input not in ["Y", "N"]:
             print("Invalid input... try again\n %s" % (resolved_input))
         else:
             break

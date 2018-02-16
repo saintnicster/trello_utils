@@ -54,10 +54,9 @@ for card in all_cards:
     if card.closed == True:
         continue
 
-    if card.idList == CLOSED_LIST_ID:
+    if card.idList == CLOSED_LIST_ID and incident_number in servicenow_dump['dict']:
         if servicenow_dump['dict'][incident_number]['incident_state'] not in {'Resolved', 'Cancelled'}:
-            print("%s closed in Trello, Status in SN = %s" % 
-                (incident_number, servicenow_dump['dict'][incident_number]['incident_state']))
+            print("%s closed in Trello, Status in SN = %s" % (incident_number, servicenow_dump['dict'][incident_number]['incident_state']))
            
     
 

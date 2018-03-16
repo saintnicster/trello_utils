@@ -4,21 +4,12 @@ from inspect import getmembers
 from datetime import datetime
 import json
 import csv
-
-client = TrelloClient(
-    api_key='***REMOVED***',
-    api_secret='***REMOVED***',
-    token='***REMOVED***',
-    token_secret='***REMOVED***'
-)
-
-BACKLOG_BOARD_ID = '587d4739aacd90eb33fedfce'
-INWORK_BOARD_ID = '59b801ead00a15fd62d1fe05'
+from issow_trello_setup import *
 
 list_lookup = {}
 csv_output = []
-backlog_board = client.get_board(BACKLOG_BOARD_ID)
-inwork_board = client.get_board(INWORK_BOARD_ID)
+backlog_board = ISSOW_TRELLO_CLIENT.get_board(TRELLO_IDS.BOARDS.BACKLOG)
+inwork_board = ISSOW_TRELLO_CLIENT.get_board(TRELLO_IDS.BOARDS.INWORK)
 
 issow_lists = inwork_board.all_lists( ) + backlog_board.all_lists( )
 all_cards = inwork_board.open_cards(  ) + backlog_board.open_cards( )

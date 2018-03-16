@@ -1,24 +1,15 @@
-from trello import TrelloClient
+from trello import trelloclient
 from trello import Label as TrelloLabel
 from pprint import pprint
 from inspect import getmembers
-from trello_constants import *
-
-
 import pyperclip
-
-client = TrelloClient(
-    api_key=TRELLO_SECRETS['api_key'],
-    api_secret=TRELLO_SECRETS['api_secret'],
-    token=TRELLO_SECRETS['token'],
-    token_secret=TRELLO_SECRETS['token_secret']
-)
+from issow_trello_setup import *
 
 bu_names = []
-for bu in BU_LABELS.items() :
+for bu in BU_LOOKUP.items() :
     bu_names.append( bu[1]["name"] )
 
-list_created = client.get_board(TRELLO_IDS.BOARDS.BACKLOG).get_list(TRELLO_IDS.LISTS.NEWLY_CREATED)
+list_created = ISSOW_TRELLO_CLIENT.get_board(TRELLO_IDS.BOARDS.BACKLOG).get_list(TRELLO_IDS.LISTS.NEWLY_CREATED)
 
 def create_trello_ticket():
     while True:
@@ -31,7 +22,7 @@ def create_trello_ticket():
             if sn_num_input[0:3] != "INC":
                 sn_num_input = "INC"+sn_num_input
             
-            if len(client.search(sn_num_input, False, [], TRELLO_IDS.BOARDS.BACKLOG+','+TRELLO_IDS.BOARDS.INWORK )) != 0:
+            if len(ISSOW_TRELLO_CLIENT.search(sn_num_input, False, [], TRELLO_IDS.BOARDS.BACKLOG+','+TRELLO_IDS.BOARDS.INWORK )) != 0:
                 print("Incident %s already in Trello\n\n" % (sn_num_input) )
             else:
                 break
@@ -40,10 +31,10 @@ def create_trello_ticket():
 
     while True:
         bu_input = input("** Business Unit?\n%s - " % (', '.join(bu_names))).upper()
-        if bu_input not in list(BU_LABELS):
+        if bu_input not in list(BU_LOOKUP):
             print("BU not recognized.  Try again...\n")
         else:
-            bu_label = BU_LABELS[bu_input]
+            bu_label = BU_LOOKUP[bu_input]
             break
     
     while True:
@@ -83,14 +74,14 @@ def create_trello_ticket():
             break
 
     if bu_label["label_obj"] == None:
-        bu_label["label_obj"] = TrelloLabel(client, bu_label["id"], None, None).fetch()
+        bu_label["label_obj"] = TrelloLabel(ISSOW_TRELLO_CLIENT, bu_label["id"], None, None).fetch()
     
     card_labels = [ bu_label["label_obj"] ]
     if priority_input == 'Y':
-        card_labels.append( TrelloLabel(client, TRELLO_IDS.LABELS.BU_PRIORITY, None, None).fetch() )
+        card_labels.append( TrelloLabel(ISSOW_TRELLO_CLIENT, TRELLO_IDS.LABELS.BU_PRIORITY, None, None).fetch() )
 
     if config_input == 'Y':
-        card_labels.append( TrelloLabel(client, TRELLO_IDS.LABELS.CONFIG, None, None).fetch() )
+        card_labels.append( TrelloLabel(ISSOW_TRELLO_CLIENT, TRELLO_IDS.LABELS.CONFIG, None, None).fetch() )
 
     new_card = list_created.add_card(  "%s - %s" % (sn_num_input, short_descr_input,), description_input, card_labels )
 

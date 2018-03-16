@@ -2,24 +2,10 @@ from trello import TrelloClient
 from trello import Label as TrelloLabel
 from pprint import pprint
 from inspect import getmembers
+from issow_trello_setup import *
 
-TRELLO_IDS = type('trello_ids', 
-    (object,), {
-        "BOARDS" : type('board_ids',(object,), { "BACKLOG" : '587d4739aacd90eb33fedfce', "INWORK" : '59b801ead00a15fd62d1fe05' } ),
-        "LISTS"  : type('list_ids' ,(object,), { "NEWLY_CREATED" : '587e244b50ed39d516edf94f', "NOT_BVILLE" : '598b14d18ce45e0e70ace903', "RESOLVED" : '587fb500aa3ee04f092ccc7d'} ),
-        "LABELS" : type('label_ids',(object,), { "BU_PRIORITY" : '58823fceced82109ffdda066',"CONFIG" : '58a46d1eced82109ff4b1165' } )
-        }
-    )
-
-client = TrelloClient(
-    api_key='***REMOVED***',
-    api_secret='***REMOVED***',
-    token='***REMOVED***',
-    token_secret='***REMOVED***'
-)
-
-backlog_board = client.get_board(TRELLO_IDS.BOARDS.BACKLOG)
-inwork_board = client.get_board(TRELLO_IDS.BOARDS.INWORK)
+backlog_board = ISSOW_TRELLO_CLIENT.get_board(TRELLO_IDS.BOARDS.BACKLOG)
+inwork_board = ISSOW_TRELLO_CLIENT.get_board(TRELLO_IDS.BOARDS.INWORK)
 
 all_cards = inwork_board.all_cards( ) + backlog_board.all_cards( ) 
 

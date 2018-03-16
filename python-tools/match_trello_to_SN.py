@@ -5,7 +5,7 @@ from datetime import datetime
 import json
 import csv
 from os import path
-from trello_secrets import *
+from issow_trello_setup import *
 
 def read_servicenow_file():
     file_rows = []
@@ -18,20 +18,13 @@ def read_servicenow_file():
             sn_dict[row['number']] = row
     return { 'rows' : file_rows, 'dict' : sn_dict }
 
-client = TrelloClient(
-    api_key=TRELLO_SECRETS['api_key'],
-    api_secret=TRELLO_SECRETS['api_secret'],
-    token=TRELLO_SECRETS['token'],
-    token_secret=TRELLO_SECRETS['token_secret']
-)
-
 xref_dict = {}
 list_lookup = {}
 
 servicenow_dump = read_servicenow_file()
 
-backlog_board = client.get_board(TRELLO_IDS.BOARDS.BACKLOG)
-inwork_board = client.get_board(TRELLO_IDS.BOARDS.INWORK)
+backlog_board = ISSOW_TRELLO_CLIENT.get_board(TRELLO_IDS.BOARDS.BACKLOG)
+inwork_board = ISSOW_TRELLO_CLIENT.get_board(TRELLO_IDS.BOARDS.INWORK)
 
 issow_lists = inwork_board.all_lists( ) + backlog_board.all_lists( )
 

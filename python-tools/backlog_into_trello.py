@@ -15,9 +15,9 @@ TRELLO_COLORS = {'GREEN': 'green',
                  'LIME': 'lime',
                  'BLACK': 'black'}
 
-TRELLO_APP_KEY = "***REMOVED***"
-TOKEN = "***REMOVED***"
-ISSOW_BOARD_ID = '587d4739aacd90eb33fedfce'
+TRELLO_APP_KEY = ''
+TOKEN = ''
+ISSOW_BOARD_ID = ''
 
 trelloboard_issow = None
 

@@ -7,6 +7,7 @@ These are the utilities that the ISSoW group uses to maintain our team managemen
     * py-trello
     * pyperclip
     * cx-Freeze
+3.  Go into the `trello_api_stuff.py` file and fill out your API information per the instructions
 
 #Build and Test
 Building the exe files is done by navigating inside the `python-tools` directory, then running `python .\setup.py build`.  This will generate the folder `python-tools\build\combo`.  Two executables, along with the python framework will be generated and can be run on a machine that doesn't have python installed natively

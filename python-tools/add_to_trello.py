@@ -52,6 +52,13 @@ def create_trello_ticket():
             break
 
     while True:
+        techteam_input = input("** Is this a ticket for the Tech Team? [y/n] ").upper()
+        if techteam_input not in ["Y", "N"]:
+            print("Invalid input... try again\n %s" % (resolved_input))
+        else:
+            break
+
+    while True:
         config_input = input("** Is this a config change? [y/n] ").upper()
         if config_input not in ["Y", "N"]:
             print("Invalid input... try again\n %s" % (config_input))
@@ -83,7 +90,13 @@ def create_trello_ticket():
     if config_input == 'Y':
         card_labels.append( TrelloLabel(ISSOW_TRELLO_CLIENT, TRELLO_IDS.LABELS.CONFIG, None, None).fetch() )
 
-    new_card = list_created.add_card(  "%s - %s" % (sn_num_input, short_descr_input,), description_input, card_labels )
+    
+    if techteam_input == 'Y':
+        title_pattern = "%s - TECH TEAM - %s"
+    else:
+        title_pattern = "%s - %s"
+
+    new_card = list_created.add_card(  title_pattern % (sn_num_input, short_descr_input,), description_input, card_labels )
 
     new_card.attach("ServiceNow - %s" % (sn_num_input), None, None, 
                     "https://conocophillips.service-now.com/nav_to.do?uri=incident.do?sysparm_query=number=%s" % (sn_num_input))
@@ -91,13 +104,13 @@ def create_trello_ticket():
     if bville_input == 'N':
         new_card.change_list( TRELLO_IDS.LISTS.NOT_BVILLE )
 
+    if techteam_input == 'Y':
+        new_card.change_board( TRELLO_IDS.BOARDS.INWORK, TRELLO_IDS.LISTS.TECH_TEAM )
+
     if resolved_input == 'Y':
-        new_card.change_board( TRELLO_IDS.BOARDS.INWORK, TRELLO_IDS.LISTS.RESOLVED)
+        new_card.change_board( TRELLO_IDS.BOARDS.INWORK, TRELLO_IDS.LISTS.RESOLVED )
     
     print("Card created at url %s" % (new_card.url))
-
-    
-
 
 while True:
     if create_trello_ticket() == False:

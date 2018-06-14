@@ -49,7 +49,7 @@ for card in all_cards:
                         "SN_Assigned": card.ServiceNow_Assigned,
                         "BU_Identified_Priority": card.BU_Identified_Priority })
 
-csv_filename = "//conoco.net/bvl_shared/temp/fajarn/trello_export_"+datetime.now().strftime("%Y%m%d%H%M%S")+'.csv'
+csv_filename = "./trello_export_"+datetime.now().strftime("%Y%m%d%H%M%S")+'.csv'
 with open(csv_filename,'w') as csv_file:
     writer = csv.DictWriter(csv_file, ["incidentNumber","incidentName",'listName',"BU_Reported","SN_Assigned", "BU_Identified_Priority"],None,'raise','unix')
     writer.writeheader()

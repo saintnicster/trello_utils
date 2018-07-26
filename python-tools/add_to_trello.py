@@ -47,7 +47,7 @@ def create_trello_ticket():
     while True:
         bville_input = input("** Is this being handled by Bartlesville support team? [y/n] ").upper()
         if bville_input not in ["Y", "N"]:
-            print("Invalid input... try again\n %s" % (resolved_input))
+            print("Invalid input... try again\n %s" % (bville_input))
         else:
             break
 

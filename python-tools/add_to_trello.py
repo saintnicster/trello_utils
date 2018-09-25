@@ -54,9 +54,17 @@ def create_trello_ticket():
     while True:
         techteam_input = input("** Is this a ticket for the Tech Team? [y/n] ").upper()
         if techteam_input not in ["Y", "N"]:
-            print("Invalid input... try again\n %s" % (resolved_input))
+            print("Invalid input... try again\n %s" % (techteam_input))
         else:
             break
+
+    while (techteam_input == 'Y'):
+        parent_incident_input = input("***** Enter parent incident - ")
+        if len(parent_incident_input) != 0:
+            if parent_incident_input[0:3] != "INC":
+                parent_incident_input = "INC"+parent_incident_input
+            short_descr_input = "(%s) - %s" % (parent_incident_input, short_descr_input)
+        break
 
     while True:
         config_input = input("** Is this a config change? [y/n] ").upper()
